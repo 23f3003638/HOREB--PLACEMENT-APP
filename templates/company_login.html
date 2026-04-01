@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+
+
+{% block head %}
+<style>
+    .container{
+        max-width: 450px;
+        margin: 60px auto;
+        padding: 35px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        
+    }
+    .form-control{
+        border-radius: 20px;
+        border-color: black;
+        text-align: center;
+        display: list-item;
+        padding: 5px;
+    }
+    .but{
+        margin: 10px;
+        border-width: 2px;
+        padding: 12px 22px;
+        border: 1px solid black;
+        border-radius: 980px;
+        
+    }
+    ul{
+        display: flex;
+        list-style:none;
+        gap:3px
+    }
+    a:hover{
+        color:rgb(8, 145, 236);
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <h1>Company Login</h1>
+
+    <form action="/company_login" method="POST">
+    <div class="mb-3">
+        <label > username</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="labelborder"> password</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="but">login</button>
+</form>
+<ul>
+    <li><p>Do you have an account?</p></li>
+    <li> <a href="/company_registration">Register</a></li>
+</ul>
+</div>
+
+
+
+{% endblock %}

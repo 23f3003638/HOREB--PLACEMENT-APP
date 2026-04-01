@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+
+.nav{
+display:flex;
+align-items:center;
+gap:20px;
+list-style:none;
+}
+
+.logout-btn{
+padding:12px 22px;
+background:transparent;
+color:black;
+border:1px solid black;
+border-radius:980px;
+font-size:17px;
+cursor:pointer;
+transition:all 0.3s ease;
+}
+
+.logout-btn:hover{
+background:black;
+color:white;
+}
+
+.container{
+max-width:1400px;
+margin:40px auto;
+padding:40px;
+background-color:#ffffff;
+border-radius:30px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background-color:white;
+border-radius:12px;
+}
+
+th,td{
+padding:14px 16px;
+text-align:left;
+}
+
+th{
+font-weight:600;
+}
+
+tbody tr{
+border-bottom:1px solid #eee;
+}
+
+tbody tr:hover{
+background-color:#f5f5f5;
+}
+ul a:hover{
+        color:rgb(8, 145, 236);
+}
+
+</style>
+{% endblock %}
+
+
+{% block nav %}
+
+<a href="/student_dashboard">Home</a>
+<a href="/student_dashboard/drives">Drives</a>
+<a href="/student_dashboard/applications">My Applications</a>
+
+<ul class="nav">
+<li><a href="/student_dashboard/profile">Hi, {{ student_user.name }}</a></li>
+<li>
+<button class="logout-btn" onclick="location.href='/logout'">
+Logout
+</button>
+</li>
+</ul>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1>{{ student_user.name }} Dashboard</h1>
+
+<div class="container">
+
+<table>
+
+<tr>
+<th>Company</th>
+<th>Role</th>
+<th>Applied Date</th>
+<th>Status</th>
+</tr>
+
+{% for a in applications %}
+
+<tr>
+
+<td>{{ a.drive.company.name }}</td>
+
+<td>{{ a.drive.title }}</td>
+
+<td>{{ a.application_date }}</td>
+
+<td>
+
+{% if a.status == 'applied' %}
+<button style="background-color:gray;">Applied</button>
+
+{% elif a.status == 'shortlisted' %}
+<button style="background-color:orange;">Shortlisted</button>
+
+{% elif a.status == 'selected' %}
+<button style="background-color:green;">Selected</button>
+
+{% elif a.status == 'rejected' %}
+<button style="background-color:red;">Rejected</button>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

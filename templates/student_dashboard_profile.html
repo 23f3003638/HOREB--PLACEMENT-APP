@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+<style>
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+    }
+    h1{
+        max-width: 540px;
+        margin: 60px auto;
+
+    }
+    .logout-btn{
+        padding: 12px 22px;
+        background: transparent;
+        color: black;
+        border: 1px solid black;
+        border-radius: 980px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .logout-btn:hover{
+        background: black;
+        color:white;
+    }
+    .container{
+        
+        max-width: 450px;
+        margin: 60px auto;
+        padding: 35px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+        
+    }
+    form{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .form-control{
+        
+        border-radius: 20px;
+        border-color: black;
+        text-align: center;
+        padding: 5px;
+        display:list-item;
+    }
+    .but{
+        margin: 10px;
+        border-width: 2px;
+        padding: 12px 22px;
+        border: 1px solid black;
+        border-radius: 980px;
+    }
+    ul{
+        display: flex;
+        list-style:none;
+        gap:3px
+    }
+    ul a:hover{
+        color:rgb(8, 145, 236);
+    }
+</style>
+{% endblock %}
+
+{% block nav %}
+<a href="/student_dashboard">Home</a>
+<a href="/student_dashboard/drives">Drives</a>
+<a href="/student_dashboard/applications">My Applications</a>
+
+<ul class="nav">
+    <li><p>Hi, {{ student.name }}</p></li>
+    <li><button  class="logout-btn"onclick="location.href='/logout' ">Logout</button></li>
+</ul>
+{% endblock %}
+
+
+
+{% block content %}
+
+<h1>Update profile</h1>
+<div class="container">
+    <p style="color: red;margin-bottom: 20px;">Note: password can't be changed</p>
+
+    <form action="/student_dashboard/profile" method="POST">
+        
+    <div class="mb-3">
+        <label > username</label>
+        <input type="text" name="username" value="{{ student.user.username }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label > name</label>
+        <input type="text" name="name" value="{{ student.name }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label >Email</label>
+        <input type="email" name="email" value="{{ student.user.email }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label> contact</label>
+        <input type="number" name="contact" value="{{ student.contact or '' }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label> Department</label>
+        <input type="text" name="department" value="{{ student.department }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>cgpa</label>
+        <input type="number" name="cgpa" value="{{student.cgpa or '' }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>resume</label>
+        <input type="url" name="resume" value="{{ student.resume }}" class="form-control" required>
+    </div>
+    <button type="submit" class="but">Update </button>
+</form>
+</div>
+
+
+
+{% endblock %}

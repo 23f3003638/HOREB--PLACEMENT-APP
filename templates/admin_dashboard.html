@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+    }
+    .logout-btn{
+        padding: 12px 22px;
+        background: transparent;
+        color: black;
+        border: 1px solid black;
+        border-radius: 980px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .logout-btn:hover{
+        background: black;
+        color:white;
+    }
+    .container {
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    h1{
+        text-align: center;
+    }
+    .stat {
+        display: flex;
+        gap: 25px;
+        padding: 0;
+    }
+
+    .stat li {
+        list-style: none;
+    }
+
+    .stat-box {
+        min-width: 220px;
+        padding: 30px;
+        background: #000;
+        color: #fff;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover {
+        transform: translateY(-6px);
+    }
+
+    .stat-box p {
+        margin-bottom: 10px;
+        font-size: 16px;
+        opacity: 0.8;
+    }
+
+    .stat-box h3 {
+        font-size: 32px;
+    }
+</style>
+{% endblock %}
+
+
+{% block nav %}
+<a href="/admin_dashboard">Home</a>
+<a href="/admin_dashboard/students/search">students</a>
+<a href="/admin_dashboard/companies/search">companies</a>
+<a href="/admin_dashboard/drives">Drives</a>
+<a href="/admin_dashboard/applications">Applications</a>
+
+<ul class="nav">
+    <li><p>Hi, Admin</p></li>
+    <li><button  class="logout-btn"onclick="location.href='/logout' ">Logout</button></li>
+</ul>
+{% endblock %}
+
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+
+<div class="container">
+    
+
+    <ul class="stat">
+        <li class="stat-box">
+            <p><button style='color:white;'onclick="location.href='/admin_dashboard/students/search'">Total Students</button></p>
+            <h3>{{ stats.student }}</h3>
+        </li>
+
+        <li class="stat-box">
+            <p><button style='color:white;'onclick="location.href='/admin_dashboard/companies/search'">Total Companies</button></p>
+            <h3>{{ stats.company }}</h3>
+        </li>
+
+        <li class="stat-box">
+            <p><button style='color:white;'onclick="location.href='/admin_dashboard/drives'">Total Drives</button></p>
+            <h3>{{ stats.drive }}</h3>
+        </li>
+        <li class="stat-box">
+            <p><button style='color:white;'onclick="location.href='/admin_dashboard/applications'">Total Applictions</button></p>
+            <h3>{{ stats.application }}</h3>
+        </li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+<style>
+    h1{
+        max-width: 540px;
+        margin: 60px auto;
+
+    }
+    .container{
+        max-width: 450px;
+        margin: 60px auto;
+        padding: 35px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        
+    }
+    .form-control{
+        border-radius: 20px;
+        border-color: black;
+        text-align: center;
+        padding: 5px;
+        display: list-item;
+    }
+    .but{
+        margin: 10px;
+        border-width: 2px;
+        padding: 12px 22px;
+        border: 1px solid black;
+        border-radius: 980px;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<h1>Admin Login</h1>
+
+<div class="container">
+    
+
+    <form action="/admin_login" method="POST">
+    <div class="mb-3">
+        <label > username</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label> password</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="but">login</button>
+</form>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+
+
+{% block head %}
+<style>
+
+.hero {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;   /* vertical center */
+    align-items: center;       /* horizontal center */
+
+    text-align: center;
+
+    min-height: 60vh;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #666;
+}
+ul{
+    list-style: none;
+    display: flex;
+    gap: 30px;           /* space between items */
+    padding-left: 20px;
+    padding-top: 20px;
+
+}
+.box{
+    max-width: 450px;
+    margin: 60px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="hero">
+
+    <h1>Welcome to HOREB Placement Portal</h1>
+
+    <p>
+        Manage placement drives, companies, and student applications efficiently.
+    </p>
+    <ul >
+        <li><div class="box">
+            <p style="color: black;">For student</p>
+            <ul>
+            <li><button type="button"  onclick="location.href='/student_login'">login</button></li>
+            <li><button type="button"  onclick="location.href='/student_registration'">Register</button></li></ul>
+        </div></li>
+        <li><div class="box">
+            <p style="color: black;">For company</p>
+            <ul>
+            <li><button type="button" class="prm-but" onclick="location.href='/company_login'">login</button></li>
+            <li><button type="button" class="prm-but" onclick="location.href='/company_registration'">Register</button></li></ul>
+        </div></li>
+        
+    </ul>
+
+</div>
+
+{% endblock %}

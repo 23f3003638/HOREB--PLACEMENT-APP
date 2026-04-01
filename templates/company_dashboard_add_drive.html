@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+
+
+{% block head %}
+<style>
+    h1{
+        max-width: 540px;
+        margin: 60px auto;
+
+    }
+    .container{
+        max-width: 450px;
+        margin: 60px auto;
+        padding: 35px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+        
+    }
+    .form-control{
+        border-radius: 20px;
+        border-color: black;
+        text-align: center;
+        padding: 5px;
+        display:list-item;
+    }
+    .but{
+        margin: 10px;
+        border-width: 2px;
+        padding: 12px 22px;
+        border: 1px solid black;
+        border-radius: 980px;
+    }
+    ul{
+        display: flex;
+        list-style:none;
+        gap:3px
+    }
+    ul a:hover{
+        color:rgb(8, 145, 236);
+    }
+</style>
+{% endblock %}
+
+{% block nav %}
+
+<a href="/company_dashboard">Home</a>
+<a href="/company_dashboard/drives">Drives</a>
+<a href="/company_dashboard/applications">Applications</a>
+
+<ul class="nav">
+    <li><a href="/company_dashboard/profile"><p>Hi, {{ company_user.name }}</p></a></li>
+    <li>
+        <button class="logout-btn" onclick="location.href='/logout'">
+            Logout
+        </button>
+    </li>
+</ul>
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Add Drive</h1>
+<div class="container">
+
+    <form action="/company_dashboard/add_drive" method="POST">
+        
+    <div class="mb-3">
+        <label > Title</label>
+        <input type="text" name="title" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label > Description</label>
+        <input type="text" name="description" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label >Eligibility</label>
+        <input type="text" name="eligibility" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label> Salary</label>
+        <input type="number" name="salary" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Location</label>
+        <input type="text" name="location" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label> Deadline</label>
+        <input type="datetime-local" name="deadline" class="form-control" required>
+    </div>
+    <button type="submit" class="but">Add</button>
+</form>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}HOREB - Placement Portal{% endblock %}</title>
+    {% block head %}{% endblock %}
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        a{
+            text-decoration: none;   /* removes underline */
+            color: inherit;   
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            padding: 0 20px;
+        }
+        main {
+            flex: 1;
+            margin-top: 70px;
+            padding: 30px;
+        }
+        main button{
+            padding: 12px 12px;
+            background: transparent;
+            color: black;
+            border: 1px solid black;
+            border-radius: 980px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+        }
+        main button:hover{
+            color: white;
+            background: black;
+        }
+        .flash_message{
+            color: red;
+            text-align: center;
+            margin: 60px auto;
+            max-width: 250px;
+            border-radius: 20px;
+        }
+        .alert-success {
+             color: green; 
+            }
+        .alert-danger { 
+            color: red; 
+        }
+        .alert-warning {
+             color: orange; 
+            }
+        .alert-info { color: blue; 
+        }
+        footer {
+            background: #1d1d1f;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-content">
+        <div class="brand"><h1>HOREB</h1></div>
+        {% block nav %} {% endblock %}
+    </div>
+</nav>
+
+<main>
+    <!-- flash messages -->
+        <div class="flash_message">
+            {% with message=get_flashed_messages(with_categories=true) %}
+                {% if message %}
+                    {% for cat, mes in message %}
+                        <div class="alert-{{ cat }}">{{ mes }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    {% block content %}
+    
+
+
+{% endblock %}
+
+
+
+
+</main>
+
+<footer>
+</footer>
+
+</body>
+</html>

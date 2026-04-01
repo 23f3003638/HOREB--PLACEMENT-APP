@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+    }
+    .logout-btn{
+        padding: 12px 22px;
+        background: transparent;
+        color: black;
+        border: 1px solid black;
+        border-radius: 980px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .logout-btn:hover{
+        background: black;
+        color:white;
+    }
+    .container {
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    h1{
+        text-align: center;
+    }
+    .stat {
+        display: flex;
+        gap: 25px;
+        padding: 0;
+    }
+
+    .stat li {
+        list-style: none;
+    }
+
+    .stat-box {
+        min-width: 220px;
+        padding: 30px;
+        background: #000;
+        color: #fff;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover {
+        transform: translateY(-6px);
+    }
+
+    .stat-box p {
+        margin-bottom: 10px;
+        font-size: 16px;
+        opacity: 0.8;
+    }
+
+    .stat-box h3 {
+        font-size: 32px;
+    }
+</style>
+{% endblock %}
+
+
+{% block nav %}
+<a href="/company_dashboard">Home</a>
+<a href="/company_dashboard/drives">Drives</a>
+<a href="/company_dashboard/applications">Applications</a>
+
+<ul class="nav" >
+    <li><a href="/company_dashboard/profile"><p>Hi, {{ company_user.name }}</p></a></li>
+    <li><button  class="logout-btn"onclick="location.href='/logout' ">Logout</button></li>
+</ul>
+{% endblock %}
+
+
+{% block content %}
+<h1>{{ company_user.name }} Dashboard</h1>
+<div class="container">
+    <button onclick="location.href='/company_dashboard/add_drive'" style="margin-left: 950px; position:relative;">+ Add Drive</button>
+    <ul class="stat">
+        <li class="stat-box">
+            <p><button style='color:white;'onclick="location.href='/company_dashboard/drives'">Total Drives</button></p>
+            <h3>{{ stats.drives }}</h3>
+        </li>
+
+        <li class="stat-box">
+            <p><button style='color:white;'onclick="location.href='/company_dashboard/applications'">Total applications</button></p>
+            <h3>{{ stats.applications }}</h3>
+        </li>
+    </ul>
+</div>
+{% endblock %}
